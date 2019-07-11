@@ -1,0 +1,52 @@
+
+----------------------------------
+Modelo de datos
+
+se identifica la siguiente información relevante:
+
+Clientes: para cada cliente se guardará como mínimo su nombre completo, dirección de correo electrónico y contraseña.
+Localidades: los hoteles se encuentran ubicados en localidades. Para cada localidad se almacenará su nombre.
+Hoteles: para cada hotel se guardará como mínimo su nombre, categoría, localidad, dirección, número de teléfono y breve descripción textual.
+Tarifas: un hotel concreto puede disponer de distintas tarifas según el número máximo de personas permitidas por habitación, tipo de habitación 
+	(p.e. estándar, superior, lujo), régimen de alojamiento (sólo alojamiento, alojamiento y desayuno, media pensión, pensión completa), temporada 
+	y penalización en caso de cancelación (un valor entre el 0% y el 100% del importe de la reserva). Cada tarifa que oferta un hotel tiene un 
+	precio por noche asociado (en euros, con resolución de céntimo de euro). Un ejemplo de tarifa sería: Hotel Linuxhotel, habitación estándar, 
+	máximo 2 personas, alojamiento y desayuno, penalización del 25% en caso de cancelación y precio de 69,95 euros por noche.
+Disponibilidad: cada hotel dispone, para cada fecha, de un determinado número de ofertas disponibles en cada tarifa que ofrece. Por ejemplo, el 
+	hotel Linuxhotel podría disponer para el día 1 de abril de 2014 un total de 10 habitaciones con la tarifa mencionada en el punto anterior. 
+	A medida que se van realizando reservas para una tarifa y fecha dadas, se va decrementando el número de ofertas disponibles para la misma. 
+	Por ejemplo, si alguien reserva la oferta del 1 de abril mencionada anteriormente, pasaría a haber 9 habitaciones disponibles en vez de 10 
+	para ese día y tarifa.
+Reservas: cada reserva realizada por un cliente se almacena en la base de datos con un identificador único, identidad del cliente, fecha y hora 
+	en que se formaliza la reserva, fecha de entrada en el hotel, número de noches, tarifa, importe total de la reserva y, en caso de que se hubiese 
+	cancelado la reserva, fecha y hora de cancelación.
+
+Cada hotel debe tener asociada una foto.
+
+----------------------------------
+Lógica de la búsqueda y reserva de hoteles
+
+
+Las funciones principales que proporciona la aplicación son dos: búsqueda de tarifas de hotel conforme a unos criterios y reserva de un hotel con una 
+	tarifa dada.
+
+El usuario debe poder realizar una búsqueda de hoteles proporcionando los siguientes datos:
+	Fecha de entrada y número de noches. La fecha de entrada no puede ser anterior al día actual.
+	Número de personas. Se puede reservar para una, dos o tres personas.
+	Localidad. Para simplificar el sistema, el usuario debe introducir el nombre exacto de la localidad, y se puede asumir que no habrá dos localidades 
+		con el mismo nombre.
+
+Los resultados a la búsqueda serán todas aquellas tarifas de hoteles que:
+	Se correspondan con la localidad seleccionada.
+	Admitan el número de personas seleccionado.
+	Tengan al menos una habitación disponible para todos los días a reservar.
+
+La reserva de una habitación consiste en los siguientes pasos:
+	Comprobación de que haya al menos una habitación libre para todos los días de la reserva. Aunque se haya hecho esta comprobación al realizar la 
+		búsqueda, debe volver a hacerse por si hubiese cambiado la disponibilidad desde entonces.
+	Decremento en una unidad del número de habitaciones para cada día de la reserva.
+	Inserción de una nueva entrada en la tabla de reservas.
+
+Las operaciones anteriores deben realizarse en su totalidad, o de lo contrario no se debe efectuar ningún cambio en la base de datos. Además, debe 
+	realizarse de tal forma que los datos sean consistentes aun en el caso de que se realicen reservas de forma concurrente. Por ello, será necesario 
+	realizar la reserva como una transacción y utilizar los cerrojos que puedan ser necesarios
