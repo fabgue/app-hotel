@@ -1,15 +1,31 @@
+# Web
+server:
+  port: 8080
+  servlet:
+    contextPath: "/api"
+
+# Spring
 spring:  
   jpa:  
     hibernate:  
-      ddl-auto: update
+      ddl-auto: create
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     properties: 
-      hibernate:  
-        jdbc:
-          lob:
-            # Fix java.sql.SQLFeatureNotSupportedException: Method org.postgresql.jdbc.PgConnection.createClob() is not yet implemented
-            non_contextual_creation: true
+      hibernate:
+        # Fix java.sql.SQLFeatureNotSupportedException: Method org.postgresql.jdbc.PgConnection.createClob() is not yet implemented  
+        jdbc.lob.non_contextual_creation: true
   datasource:  
     url: "jdbc:postgresql://localhost:5432/pgdb"  
     username: pguser  
     password: pgpass
+  data:
+    rest.defaultMediaType: application/json    
+    # default is application/hal+json
+    
+
+# lOGGING
+logging:
+  level:
+    org.hibernate.SQL: INFO
+    org.hibernate.type.descriptor.sql.BasicBinder: INFO
+    
