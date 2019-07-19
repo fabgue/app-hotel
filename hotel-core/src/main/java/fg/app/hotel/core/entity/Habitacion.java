@@ -17,38 +17,28 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "hotel")
-public class Hotel {
+@Table(name = "habitacion")
+public class Habitacion {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name = "id")
 	private Long id;
-	
-	@Column(name = "nombre")
-	private String nombre;
-	
-	@Column(name = "direccion")
-	private String direccion;
-	
-	@Column(name = "telefono")
-	private String telefono;
-	
-	@Column(name = "descripcion")
-	private String descripcion;
-
-	@Column(name = "localidad")
-	private String localidad;
-	
-	@Column(name = "hotel_categoria")
-	private String hotelCategoria;
-
 		
-	public Hotel(String nombre) {
-		super();
-		this.nombre = nombre;
-	}
+	@Column(name = "id_hotel")
+	private Long idHotel;
 	
+	@Column(name = "numero")
+	private String numero;
+	
+	@Column(name = "num_piso")
+	private Integer numPiso;
+	
+	@Column(name = "habitacion_tipo")
+	private String habitacionTipo;
+	
+	@Column(name = "num_personas")
+	private Integer numPersonas;
 	
 	
 }

@@ -15,9 +15,9 @@ spring:
         # Fix java.sql.SQLFeatureNotSupportedException: Method org.postgresql.jdbc.PgConnection.createClob() is not yet implemented  
         jdbc.lob.non_contextual_creation: true
   datasource:  
-    url: "jdbc:postgresql://localhost:5432/pgdb"  
-    username: pguser  
-    password: pgpass
+    url: "jdbc:postgresql://localhost:5432/aphdb"  
+    username: aphuser  
+    password: aphpass
   data:
     rest.defaultMediaType: application/json    
     # default is application/hal+json
