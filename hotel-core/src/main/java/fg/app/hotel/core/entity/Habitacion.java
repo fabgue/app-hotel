@@ -17,27 +17,27 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "habitacion")
+@Table(name = "HABITACION")
 public class Habitacion {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name = "id")
-	private Long id;
+	@Column(name = "ID_HABITACION")
+	private Long idHabitacion;
 		
-	@Column(name = "id_hotel")
+	@Column(name = "ID_HOTEL")
 	private Long idHotel;
 	
-	@Column(name = "numero")
+	@Column(name = "NUMERO")
 	private String numero;
 	
-	@Column(name = "num_piso")
+	@Column(name = "NUM_PISO")
 	private Integer numPiso;
 	
-	@Column(name = "habitacion_tipo")
+	@Column(name = "HABITACION_TIPO")
 	private String habitacionTipo;
 	
-	@Column(name = "num_personas")
+	@Column(name = "NUM_PERSONAS")
 	private Integer numPersonas;
 	
 	
