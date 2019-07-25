@@ -17,26 +17,18 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "HABITACION")
-public class Habitacion {
+@Table(name = "Region")
+public class Region {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name = "ID", nullable = false)
 	private Long id;
-		
-	@Column(name = "ID_HOTEL", nullable = false)
-	private Long idHotel;
+
+	@Column(name = "NOMBRE", nullable = false)
+	private String nombre;
+
+	@Column(name = "ID_REGION_PADRE")
+	private Long idRegionPadre;
 	
-	@Column(name = "ID_HABITACION_TIPO")
-	private Long idHabitacionTipo;
-	
-	@Column(name = "NUMERO", nullable = false)
-	private String numero;
-	
-	@Column(name = "PISO", nullable = false)
-	private Integer piso;
-	
-	
-		
 }

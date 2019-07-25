@@ -22,10 +22,16 @@ public class Hotel {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name = "ID_HOTEL")
-	private Long idHotel;
+	@Column(name = "ID", nullable = false)
+	private Long id;
 	
-	@Column(name = "NOMBRE")
+	@Column(name = "ID_HOTEL_CATEGORIA")
+	private Long idHotelCategoria;
+	
+	@Column(name = "ID_LOCALIDAD")
+	private Long idLocalidad;
+	
+	@Column(name = "NOMBRE", nullable = false)
 	private String nombre;
 	
 	@Column(name = "DIRECCION")
@@ -37,10 +43,6 @@ public class Hotel {
 	@Column(name = "DESCRIPCION")
 	private String descripcion;
 
-	@Column(name = "LOCALIDAD")
-	private String localidad;
 	
-	@Column(name = "HOTEL_CATEGORIA")
-	private String hotelCategoria;
 
 }
