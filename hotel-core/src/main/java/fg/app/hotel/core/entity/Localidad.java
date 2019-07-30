@@ -21,17 +21,17 @@ import lombok.Setter;
 public class Localidad {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "ID", nullable = false)
 	private Long id;
 	
-	@Column(name = "ID_REGION_CIUDAD")
+	@Column(name = "ID_REGION_CIUDAD", nullable = false)
 	private Long idRegionCiudad;
 
-	@Column(name = "ID_REGION_DEPTO")
+	@Column(name = "ID_REGION_DEPTO", nullable = false)
 	private Long idRegionDepto;
 
-	@Column(name = "ID_REGION_PAIS")
+	@Column(name = "ID_REGION_PAIS", nullable = false)
 	private Long idRegionPais;
 	
 }

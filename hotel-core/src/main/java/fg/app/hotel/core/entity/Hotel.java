@@ -23,23 +23,23 @@ import lombok.Setter;
 public class Hotel {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "ID", nullable = false)
 	private Long id;
 	
-	@Column(name = "ID_HOTEL_CATEGORIA")
+	@Column(name = "ID_HOTEL_CATEGORIA", nullable = false)
 	private Long idHotelCategoria;
 	
-	@Column(name = "ID_LOCALIDAD")
+	@Column(name = "ID_LOCALIDAD", nullable = false)
 	private Long idLocalidad;
 	
 	@Column(name = "NOMBRE", nullable = false)
 	private String nombre;
 	
-	@Column(name = "DIRECCION")
+	@Column(name = "DIRECCION", nullable = false)
 	private String direccion;
 	
-	@Column(name = "TELEFONO")
+	@Column(name = "TELEFONO", nullable = false)
 	private String telefono;
 	
 	@Column(name = "DESCRIPCION")
@@ -49,9 +49,10 @@ public class Hotel {
 	@ManyToOne
 	@JoinColumn(name = "ID_HOTEL_CATEGORIA", referencedColumnName = "ID", updatable = false, insertable = false)
 	private HotelCategoria hotelCategoria;
-	
+	*/
+	/*
 	@ManyToOne
 	@JoinColumn(name = "ID_LOCALIDAD", referencedColumnName = "ID", updatable = false, insertable = false)
-	private Localidad localidad;
-	*/
+	private Localidad localidad;*/
+	
 }

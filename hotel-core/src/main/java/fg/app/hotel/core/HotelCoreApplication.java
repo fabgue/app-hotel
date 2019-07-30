@@ -25,13 +25,13 @@ public class HotelCoreApplication {
 	ApplicationRunner init(HotelRepository hotelRepo, HabitacionRepository habitacionRepo) {
 		return args -> {
 			logger.info("Inicio HotelCoreApplication");
-			Hotel uno = hotelRepo.save(new Hotel(null, null, null , "Hotel Ritz", null, null, null));
+			/*Hotel uno = hotelRepo.save(new Hotel(null, null, null , "Hotel Ritz", null, null, null));
 			Hotel dos = hotelRepo.save(new Hotel(null, null, null , "Hotel Hilton", null, null, null));
 			
-			habitacionRepo.save(new Habitacion(null, uno.getId(), null, "101", 1));
-			habitacionRepo.save(new Habitacion(null, uno.getId(), null, "201", 2));
-			habitacionRepo.save(new Habitacion(null, dos.getId(), null, "1001", 1));
-			habitacionRepo.save(new Habitacion(null, dos.getId(), null, "2001", 2));
+			habitacionRepo.save(new Habitacion(null, uno.getId(), null, "101", 1, null));
+			habitacionRepo.save(new Habitacion(null, uno.getId(), null, "201", 2, null));
+			habitacionRepo.save(new Habitacion(null, dos.getId(), null, "1001", 1, null));
+			habitacionRepo.save(new Habitacion(null, dos.getId(), null, "2001", 2, null));*/
 		};
 	}
 }

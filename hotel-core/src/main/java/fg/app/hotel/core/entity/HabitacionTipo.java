@@ -21,14 +21,14 @@ import lombok.Setter;
 public class HabitacionTipo {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "ID", nullable = false)
 	private Long id;
 	
 	@Column(name = "NOMBRE", nullable = false)
 	private String nombre;
 
-	@Column(name = "NUM_PERSONAS")
+	@Column(name = "NUM_PERSONAS", nullable = false)
 	private Integer numPersonas;
 	
 }

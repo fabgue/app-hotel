@@ -21,13 +21,16 @@ import lombok.Setter;
 public class Region {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "ID", nullable = false)
 	private Long id;
 
 	@Column(name = "NOMBRE", nullable = false)
 	private String nombre;
 
+	@Column(name = "TIPO", nullable = false)
+	private String tipo;
+	
 	@Column(name = "ID_REGION_PADRE")
 	private Long idRegionPadre;
 	

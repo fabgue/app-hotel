@@ -23,14 +23,14 @@ import lombok.Setter;
 public class Habitacion {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "ID", nullable = false)
 	private Long id;
 		
 	@Column(name = "ID_HOTEL", nullable = false)
 	private Long idHotel;
 	
-	@Column(name = "ID_HABITACION_TIPO")
+	@Column(name = "ID_HABITACION_TIPO", nullable = false)
 	private Long idHabitacionTipo;
 	
 	@Column(name = "NUMERO", nullable = false)
@@ -38,11 +38,10 @@ public class Habitacion {
 	
 	@Column(name = "PISO", nullable = false)
 	private Integer piso;
-	
-	/*
+		
 	@ManyToOne
-	@JoinColumn(name = "ID_HABITACION_TIPO", referencedColumnName = "ID", updatable = false, insertable = false)
+	@JoinColumn(name = "ID_HABITACION_TIPO", referencedColumnName = "ID" , updatable = false, insertable = false)
 	private HabitacionTipo HabitacionTipo;
-	*/
+	
 		
 }
