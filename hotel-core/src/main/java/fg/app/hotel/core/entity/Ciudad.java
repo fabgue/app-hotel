@@ -17,21 +17,18 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "Region")
-public class Region {
+@Table(name = "CIUDAD")
+public class Ciudad {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "ID", nullable = false)
 	private Long id;
-
+	
 	@Column(name = "NOMBRE", nullable = false)
 	private String nombre;
-
-	@Column(name = "TIPO", nullable = false)
-	private String tipo;
 	
-	@Column(name = "ID_REGION_PADRE")
-	private Long idRegionPadre;
+	@Column(name = "ID_PAIS", nullable = false)
+	private Long idPais;
 	
 }

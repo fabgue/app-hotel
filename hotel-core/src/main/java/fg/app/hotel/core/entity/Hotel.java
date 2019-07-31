@@ -30,8 +30,8 @@ public class Hotel {
 	@Column(name = "ID_HOTEL_CATEGORIA", nullable = false)
 	private Long idHotelCategoria;
 	
-	@Column(name = "ID_LOCALIDAD", nullable = false)
-	private Long idLocalidad;
+	@Column(name = "ID_CIUDAD", nullable = false)
+	private Long idCiudad;
 	
 	@Column(name = "NOMBRE", nullable = false)
 	private String nombre;
