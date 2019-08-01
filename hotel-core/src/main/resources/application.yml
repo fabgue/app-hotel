@@ -19,8 +19,10 @@ spring:
     username: aphuser  
     password: aphpass
   data:
-    rest.defaultMediaType: application/json    
     # default is application/hal+json
+    rest.defaultMediaType: application/json    
+  flyway:
+    locations: filesystem:db/migration
     
 # lOGGING
 logging:
