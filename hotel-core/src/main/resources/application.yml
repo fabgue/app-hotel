@@ -24,12 +24,16 @@ spring:
   flyway:
     locations: filesystem:db/migration
     enabled: false
+  jackson:     
+    serialization: 
+      FAIL_ON_EMPTY_BEANS: false
     
 # lOGGING
 logging:
   level:
-    org.hibernate.SQL: INFO
-    org.hibernate.type.descriptor.sql.BasicBinder: INFO
+    # In development view sql
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql: TRACE
    
 # -- Required for multiple profiles in file 
 ---
@@ -47,7 +51,7 @@ spring:
             create-source: metadata
             scripts:
               action: create
-              create-target: src/main/resources/ddl_jpa_creation.sql
+              create-target: db/ddl_jpa_creation.sql
   flyway:
     enabled: false
 

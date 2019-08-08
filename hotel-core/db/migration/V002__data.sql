@@ -55,6 +55,10 @@ INSERT INTO habitacion(id, numero, piso, id_hotel, id_habitacion_tipo) VALUES(28
 INSERT INTO habitacion(id, numero, piso, id_hotel, id_habitacion_tipo) VALUES(29, '303', 3, 3, 2);
 
 
+INSERT INTO public.form (id, nombre) VALUES ('e49756cc-8066-4ece-ac14-52f2f29621a3', 'Formulario');
+;
+
+
 
 
 

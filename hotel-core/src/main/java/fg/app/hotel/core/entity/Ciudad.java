@@ -2,9 +2,12 @@ package fg.app.hotel.core.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -30,5 +33,9 @@ public class Ciudad {
 	
 	@Column(name = "ID_PAIS", nullable = false)
 	private Long idPais;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "ID_PAIS", referencedColumnName = "ID", updatable = false, insertable = false)
+	private Pais pais;
 	
 }
