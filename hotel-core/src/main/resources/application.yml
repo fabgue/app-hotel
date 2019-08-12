@@ -27,6 +27,9 @@ spring:
   jackson:     
     serialization: 
       FAIL_ON_EMPTY_BEANS: false
+      WRITE_NULL_MAP_VALUES: false   
+    deserialization:
+      FAIL_ON_UNKNOWN_PROPERTIES: false
     
 # lOGGING
 logging:

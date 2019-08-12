@@ -18,7 +18,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Entity
 @Table(name = "HOTEL_CATEGORIA")
-public class HotelCategoria {
+public class HotelCategoria extends BaseEntity {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

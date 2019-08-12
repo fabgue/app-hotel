@@ -18,7 +18,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Entity
 @Table(name = "PAIS")
-public class Pais {
+public class Pais extends BaseEntity {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

@@ -18,7 +18,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Entity
 @Table(name = "HABITACION_TIPO")
-public class HabitacionTipo {
+public class HabitacionTipo extends BaseEntity {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

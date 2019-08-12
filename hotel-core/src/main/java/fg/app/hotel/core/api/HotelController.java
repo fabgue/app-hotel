@@ -22,18 +22,23 @@ public class HotelController {
 	private HotelRepository hotelRepository;
 	
 	@GetMapping
-	public List<Hotel> getAll() {
+	public List<Hotel> getAllHotel() {
 		return hotelRepository.findAll();
 	}
 
 	@GetMapping("/{id}")
-	public Hotel get(@PathVariable Long id) {
+	public Hotel getHotelById(@PathVariable Long id) {
 		return hotelRepository.findById(id).orElse(null);
 	}
 	
 	@PostMapping
-	public Hotel post(@RequestBody Hotel hotel) {
+	public Hotel createHotel(@RequestBody Hotel hotel) {
 		return hotelRepository.save(hotel);
 	}
 
+	@PutMapping("/{id}")
+	public Hotel updateHotel(@PathVariable(value = "id") Long id, @RequestBody Hotel hotel) {
+		return hotelRepository.save(hotel);
+	}
+	
 }
