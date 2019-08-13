@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import fg.app.hotel.core.entity.Hotel;
@@ -22,13 +23,13 @@ public class HotelController {
 	private HotelRepository hotelRepository;
 	
 	@GetMapping
-	public List<Hotel> getAllHotel() {
+	public List<Hotel> getAll() {
 		return hotelRepository.findAll();
 	}
 
 	@GetMapping("/{id}")
 	public Hotel getHotelById(@PathVariable Long id) {
-		return hotelRepository.findById(id).orElse(null);
+		return hotelRepository.findById(id).orElseThrow(() -> new RuntimeException("Registro no encontrado"));
 	}
 	
 	@PostMapping
@@ -39,6 +40,19 @@ public class HotelController {
 	@PutMapping("/{id}")
 	public Hotel updateHotel(@PathVariable(value = "id") Long id, @RequestBody Hotel hotel) {
 		return hotelRepository.save(hotel);
+	}	
+	
+	/* Sample methods */
+	
+	@GetMapping("/nombre/{id}")
+	public String getNombreById(@PathVariable Long id) {
+		return hotelRepository.findNombreById(id);		
+	}
+
+	@GetMapping("/search")
+	public List<Hotel> getNombreById(@RequestParam(name = "nombre") String nombre) {
+		nombre = "%" + nombre + "%";
+		return hotelRepository.findByNombreLike(nombre);
 	}
 	
 }
