@@ -41,18 +41,5 @@ public class HotelController {
 	public Hotel updateHotel(@PathVariable(value = "id") Long id, @RequestBody Hotel hotel) {
 		return hotelRepository.save(hotel);
 	}	
-	
-	/* Sample methods */
-	
-	@GetMapping("/nombre/{id}")
-	public String getNombreById(@PathVariable Long id) {
-		return hotelRepository.findNombreById(id);		
-	}
-
-	@GetMapping("/search")
-	public List<Hotel> getNombreById(@RequestParam(name = "nombre") String nombre) {
-		nombre = "%" + nombre + "%";
-		return hotelRepository.findByNombreLike(nombre);
-	}
-	
+		
 }
