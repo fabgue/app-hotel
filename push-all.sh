@@ -5,6 +5,9 @@ if [[ -z "$1" ]]; then
  exit 1
 fi
 
+git config --get user.email
+git config --get user.name 
+
 git status
 git add -A
 git commit -m "$1"
