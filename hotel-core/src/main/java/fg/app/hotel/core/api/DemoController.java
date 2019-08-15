@@ -1,8 +1,13 @@
 package fg.app.hotel.core.api;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import fg.app.hotel.core.dto.DemoResult;
 import fg.app.hotel.core.entity.Demo;
 import fg.app.hotel.core.repository.DemoRepository;
 
@@ -38,9 +44,18 @@ public class DemoController {
 	}
 
 	@PutMapping("/{id}")
-	public Demo updateHotel(@PathVariable(value = "id") Long id, @RequestBody Demo hotel) {
+	public Demo updateDemo(@PathVariable(value = "id") Long id, @RequestBody Demo hotel) {
 		return demoRepository.save(hotel);
-	}	
+	}
+	
+	@DeleteMapping("/{id}")
+	public Map<String,Object> deleteDemo(@PathVariable(value = "id") Long id) {
+		Demo demo = demoRepository.findById(id).orElseThrow(() -> new RuntimeException("Registro no encontrado"));
+		demoRepository.delete(demo);
+        Map<String, Object> response = new HashMap<>();
+        response.put("deleted", Boolean.TRUE);
+        return response;	
+    }
 	
 	/* Sample methods */
 	
@@ -62,7 +77,7 @@ public class DemoController {
 	
 	@GetMapping("/searchByCiudad")
 	public List<Demo> getByIdCiudad(@RequestParam(name = "idCiudad") Long idCiudad) {
-		return demoRepository.findByIdCiudad(idCiudad);
+		return demoRepository.findByIdCiudadOrderByNombre(idCiudad);
 	}
 
 	@GetMapping("/searchByPais")
@@ -70,4 +85,8 @@ public class DemoController {
 		return demoRepository.findByIdPais(idPais);
 	}
 	
+	@GetMapping("/all")
+	public Page<DemoResult> getAllDemoPage(Pageable pageRequest) {
+		return demoRepository.findAllDemoPage(pageRequest);
+	}
 }
