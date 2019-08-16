@@ -39,13 +39,17 @@ public class DemoController {
 	}
 	
 	@PostMapping
-	public Demo createDemo(@RequestBody Demo hotel) {
-		return demoRepository.save(hotel);
+	public Demo createDemo(@RequestBody Demo demo) {
+		return demoRepository.save(demo);
 	}
 
 	@PutMapping("/{id}")
-	public Demo updateDemo(@PathVariable(value = "id") Long id, @RequestBody Demo hotel) {
-		return demoRepository.save(hotel);
+	public Demo updateDemo(@PathVariable(value = "id") Long id, @RequestBody Demo demo) {
+		Demo demoEdit = demoRepository.findById(id).orElseThrow(() -> new RuntimeException("Registro no encontrado"));
+		demoEdit.setNombre(demo.getNombre());
+		demoEdit.setCiudad(demo.getCiudad());
+		// Alternative verify Id and copyAllProperties
+		return demoRepository.save(demoEdit);
 	}
 	
 	@DeleteMapping("/{id}")
