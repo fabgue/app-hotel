@@ -15,9 +15,9 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(value = {Exception.class})
+    @ExceptionHandler(value = Exception.class)
     @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
-    protected ResponseEntity<Object> defaultException(RuntimeException ex, WebRequest request){
+    protected ResponseEntity<Object> defaultException(Exception ex, WebRequest request){
         String error = ex.getMessage();
         int errorCode = 500;
         String uriError = ((ServletWebRequest)request).getRequest().getRequestURL().toString();
