@@ -34,3 +34,9 @@ build/
 ### wrapper ###
 .mvn/
 mvnw
+
+
+### cloud ###
+
+**/flyway-cloud.properties
+**/application-cloud.yml

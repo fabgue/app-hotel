@@ -18,7 +18,8 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(value = Exception.class)
     @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
     protected ResponseEntity<Object> defaultException(Exception ex, WebRequest request){
-        String error = ex.getMessage();
+    	String errorId = String.valueOf(System.currentTimeMillis());
+        String errorMessage = ex.getMessage();
         int errorCode = 500;
         String uriError = ((ServletWebRequest)request).getRequest().getRequestURL().toString();
         ErrorResponse errorResponse = new ErrorResponse();
