@@ -34,8 +34,8 @@ public class DemoController {
 	}
 
 	@GetMapping("/{id}")
-	public Demo getDemoById(@PathVariable Long id) {
-		return demoRepository.findById(id).orElseThrow(() -> new RuntimeException("Registro no encontrado"));
+	public Demo getDemoById(@PathVariable Long id) throws Exception {
+		return demoRepository.findById(id).orElseThrow(() -> new Exception("Registro no encontrado"));
 	}
 	
 	@PostMapping

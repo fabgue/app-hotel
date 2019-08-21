@@ -1,5 +1,7 @@
 package fg.app.hotel.core.exception;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
@@ -14,18 +16,28 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @Order(Ordered.HIGHEST_PRECEDENCE)
 @ControllerAdvice
 public class RestExceptionHandler extends ResponseEntityExceptionHandler {
+	
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @ExceptionHandler(value = Exception.class)
+    @ExceptionHandler(value = RuntimeException.class)
     @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
-    protected ResponseEntity<Object> defaultException(Exception ex, WebRequest request){
+    protected ResponseEntity<Object> handleRuntimeException(RuntimeException ex, WebRequest request){
     	String errorId = String.valueOf(System.currentTimeMillis());
-        String errorMessage = ex.getMessage();
-        int errorCode = 500;
         String uriError = ((ServletWebRequest)request).getRequest().getRequestURL().toString();
-        ErrorResponse errorResponse = new ErrorResponse();
-        // LOGGER.error("Default Error msg: {}, requestUri: {}", ex.getMessage(), uriError);
-        return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+        ApiError apiError = new ApiError(errorId,  HttpStatus.INTERNAL_SERVER_ERROR, ex);
+        logger.error(String.format("Exception: uri = %s, erro r= %s", uriError, apiError), ex);
+        return new ResponseEntity<>(apiError, apiError.getStatus());
     }
 	
+    @ExceptionHandler(value = ResourceNotFoundException.class) 
+    @ResponseStatus(value = HttpStatus.NOT_FOUND)
+    protected ResponseEntity<Object> handleResourceNotFoundException(ResourceNotFoundException ex, WebRequest request) {
+    	String errorId = String.valueOf(System.currentTimeMillis());
+        //String uriError = ((ServletWebRequest)request).getRequest().getRequestURL().toString();
+    	String uriError = ((ServletWebRequest)request).getRequest().getServletPath();
+        ApiError apiError = new ApiError(errorId,  HttpStatus.NOT_FOUND, ex);
+        logger.warn("resourceNotFoundException: uri = {}, {}", uriError, ex.getMessage());
+        return new ResponseEntity<>(apiError, apiError.getStatus());
+    }
     
 }

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import fg.app.hotel.core.entity.Hotel;
+import fg.app.hotel.core.exception.ResourceNotFoundException;
 import fg.app.hotel.core.repository.HotelRepository;
 
 @RestController
@@ -31,7 +32,7 @@ public class HotelController {
 
 	@GetMapping("/{id}")
 	public Hotel getHotelById(@PathVariable Long id) {
-		return hotelRepository.findById(id).orElseThrow(() -> new RuntimeException("Registro no encontrado"));
+		return hotelRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(Hotel.class, id));
 	}
 	
 	@PostMapping
@@ -42,7 +43,7 @@ public class HotelController {
 	@PutMapping("/{id}")
 	public Hotel updateHotel(@PathVariable(value = "id") Long id, @RequestBody Hotel hotel) {
 		Hotel hotelEdit = hotelRepository.findById(id).orElseThrow(
-			() -> new RuntimeException("Registro no encontrado"));
+			() -> new ResourceNotFoundException(Hotel.class, id));
 		hotelEdit.setNombre(hotel.getNombre());
 		hotelEdit.setCiudad(hotel.getCiudad());
 		// Faltan properties
@@ -52,7 +53,8 @@ public class HotelController {
 	
 	@DeleteMapping("/{id}")
 	public Map<String,Object> deleteDemo(@PathVariable(value = "id") Long id) {
-		Hotel hotelDelete = hotelRepository.findById(id).orElseThrow(() -> new RuntimeException("Registro no encontrado"));
+		Hotel hotelDelete = hotelRepository.findById(id).orElseThrow(
+			() -> new ResourceNotFoundException(Hotel.class, id));
 		hotelRepository.delete(hotelDelete);
         Map<String, Object> response = new HashMap<>();
         response.put("deleted", Boolean.TRUE);
