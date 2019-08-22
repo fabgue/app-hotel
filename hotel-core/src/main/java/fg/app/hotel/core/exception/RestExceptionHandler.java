@@ -19,24 +19,25 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 	
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @ExceptionHandler(value = RuntimeException.class)
+    @ExceptionHandler(value = Exception.class)
     @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
-    protected ResponseEntity<Object> handleRuntimeException(RuntimeException ex, WebRequest request){
-    	String errorId = String.valueOf(System.currentTimeMillis());
-        String uriError = ((ServletWebRequest)request).getRequest().getRequestURL().toString();
-        ApiError apiError = new ApiError(errorId,  HttpStatus.INTERNAL_SERVER_ERROR, ex);
-        logger.error(String.format("Exception: uri = %s, erro r= %s", uriError, apiError), ex);
+    protected ResponseEntity<Object> handleGeneralException(Exception ex, WebRequest request){    	        
+        ApiError apiError = new ApiError(HttpStatus.INTERNAL_SERVER_ERROR);
+        String errorId = apiError.getErrorId();
+        String errorUri = ((ServletWebRequest)request).getRequest().getRequestURL().toString();
+        String message = ex.getClass().getSimpleName() + " : " + ex.getLocalizedMessage();
+        logger.error("Exception: errorId={}, errorUri={}, message=[{}]", errorId, errorUri, message, ex);
         return new ResponseEntity<>(apiError, apiError.getStatus());
     }
 	
     @ExceptionHandler(value = ResourceNotFoundException.class) 
     @ResponseStatus(value = HttpStatus.NOT_FOUND)
     protected ResponseEntity<Object> handleResourceNotFoundException(ResourceNotFoundException ex, WebRequest request) {
-    	String errorId = String.valueOf(System.currentTimeMillis());
-        //String uriError = ((ServletWebRequest)request).getRequest().getRequestURL().toString();
-    	String uriError = ((ServletWebRequest)request).getRequest().getServletPath();
-        ApiError apiError = new ApiError(errorId,  HttpStatus.NOT_FOUND, ex);
-        logger.warn("resourceNotFoundException: uri = {}, {}", uriError, ex.getMessage());
+    	ApiError apiError = new ApiError(HttpStatus.NOT_FOUND, ex);
+    	String errorId = apiError.getErrorId();
+    	String message = apiError.getDetailMessage();
+    	String errorUri = ((ServletWebRequest)request).getRequest().getRequestURI();        
+        logger.warn("ResourceNotFoundException: errorId={}, message=[{}], errorUri={}", errorId, message, errorUri);
         return new ResponseEntity<>(apiError, apiError.getStatus());
     }
     
