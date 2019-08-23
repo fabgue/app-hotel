@@ -35,6 +35,9 @@ build/
 .mvn/
 mvnw
 
+### logs ###
+logs/
+
 
 ### cloud ###
 

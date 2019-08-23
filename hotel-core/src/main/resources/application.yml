@@ -33,6 +33,7 @@ spring:
     
 # lOGGING
 logging:
+  file: logs/hotel.log
   level:
     # In development view sql
     org.hibernate.SQL: DEBUG

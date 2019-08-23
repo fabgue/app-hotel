@@ -21,7 +21,8 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(value = Exception.class)
     @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
-    protected ResponseEntity<Object> handleGeneralException(Exception ex, WebRequest request){    	        
+    protected ResponseEntity<Object> handleGeneralException(Exception ex, WebRequest request) {
+    	logger.info("Inicio handleGeneralException");
         ApiError apiError = new ApiError(HttpStatus.INTERNAL_SERVER_ERROR);
         String errorId = apiError.getErrorId();
         String errorUri = ((ServletWebRequest)request).getRequest().getRequestURL().toString();
@@ -33,6 +34,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(value = ResourceNotFoundException.class) 
     @ResponseStatus(value = HttpStatus.NOT_FOUND)
     protected ResponseEntity<Object> handleResourceNotFoundException(ResourceNotFoundException ex, WebRequest request) {
+    	logger.info("Inicio handleResourceNotFoundException");
     	ApiError apiError = new ApiError(HttpStatus.NOT_FOUND, ex);
     	String errorId = apiError.getErrorId();
     	String message = apiError.getDetailMessage();
