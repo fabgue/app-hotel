@@ -1,6 +1,5 @@
 package fg.app.hotel.core.entity;
 
-import java.time.LocalDateTime;
 import java.util.UUID;
 
 import javax.persistence.Column;
@@ -15,16 +14,15 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Type;
-import org.springframework.data.annotation.CreatedBy;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedBy;
-import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
+@ApiModel(description = "All details about the Demo")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -38,6 +36,7 @@ public class Demo extends AuditEntity {
 	@Column(name = "ID", nullable = false)
 	private Long id;
 		
+	@ApiModelProperty(notes = "The database generated Demo UUID")
 	@Type(type = "pg-uuid")
 	@Column(name = "OBID", nullable = false)
     private UUID obid;	
