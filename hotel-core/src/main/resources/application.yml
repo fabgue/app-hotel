@@ -31,13 +31,19 @@ spring:
     deserialization:
       FAIL_ON_UNKNOWN_PROPERTIES: false
     
-# lOGGING
+# Logging
 logging:
   file: logs/hotel.log
   level:
     # In development view sql
     org.hibernate.SQL: DEBUG
     org.hibernate.type.descriptor.sql: TRACE
+    
+# Actuator
+management:
+  endpoints.web.exposure.include: "*"
+  endpoint.health.show-details: always
+  #endpoints.web.exposure.include: ['beans','conditions','metrics']
    
 # -- Required for multiple profiles in file 
 ---
