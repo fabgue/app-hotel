@@ -38,7 +38,7 @@ public class Swagger2Config {
         return new ApiInfoBuilder()
         	.title("Hotel API")
             .description("Hotel Management REST API")
-            .contact(new Contact("fguerrero", "www.fguer.fg", "fabgue@ymail.com"))
+            .contact(new Contact("fguer", "www.example.com", "fabgue@ymail.com"))
             .license("Apache 2.0")
             .licenseUrl("http://www.apache.org/licenses/LICENSE-2.0.html")
             .version("1.0.0")
