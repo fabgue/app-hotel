@@ -12,15 +12,16 @@
 			<fileNamePattern>${LOG_FILE}.%d{yyyy-MM-dd}</fileNamePattern>
 		</rollingPolicy>
 	</appender>
+	
 	<root level="INFO">
 		<appender-ref ref="ROLLIN" />
 	</root>
 
-	<logger name="fg.app.hotel.core.api" level="INFO" additivity="false">
+	<logger name="fg.app.hotel.core" level="INFO" additivity="false">
 		<appender-ref ref="CONSOLE" />
 		<appender-ref ref="FILE" />
 	</logger>
-	<logger name="fg.app.hotel.core.exception" level="INFO" additivity="false">
+	<logger name="fg.app.hotel.core.exception" level="DEBUG" additivity="false">
 		<appender-ref ref="CONSOLE" />
 		<appender-ref ref="FILE" />
 	</logger>

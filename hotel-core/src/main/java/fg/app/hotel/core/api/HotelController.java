@@ -37,13 +37,17 @@ public class HotelController {
 	@GetMapping("/{id}")
 	public Hotel getHotelById(@PathVariable Long id) {
 		logger.info("Inicio getHotelById {}", id);
-		return hotelRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(Hotel.class, id));
+		Hotel hotel = hotelRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(Hotel.class, id));
+		logger.debug("Fin getHotelById {}", hotel);
+		return hotel;
 	}
 	
 	@PostMapping
 	public Hotel createHotel(@RequestBody Hotel hotel) {
 		logger.info("Inicio createHotel {}", hotel);
-		return hotelRepository.save(hotel);
+		Hotel hotelSaved = hotelRepository.save(hotel);
+		logger.debug("Fin createHotel {}", hotelSaved);
+		return hotelSaved;
 	}
 
 	@PutMapping("/{id}")

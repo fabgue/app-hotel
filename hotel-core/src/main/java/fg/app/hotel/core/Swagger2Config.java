@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -19,6 +20,10 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @Configuration
 @EnableSwagger2
 public class Swagger2Config {
+	
+	@Value("${app.swagger.contact-name}")
+	private String contactName;
+	
 	
 	private static final Set<String> DEFAULT_PRODUCES_AND_CONSUMES = 
 		new HashSet<String>(Arrays.asList("application/json", "application/xml"));	
@@ -38,7 +43,7 @@ public class Swagger2Config {
         return new ApiInfoBuilder()
         	.title("Hotel API")
             .description("Hotel Management REST API")
-            .contact(new Contact("fguer", "www.example.com", "fabgue@ymail.com"))
+            .contact(new Contact(contactName, "www.example.com", "fabgue@ymail.com"))
             .license("Apache 2.0")
             .licenseUrl("http://www.apache.org/licenses/LICENSE-2.0.html")
             .version("1.0.0")
