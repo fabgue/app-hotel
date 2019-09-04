@@ -217,3 +217,5 @@ mvnw.cmd
 **/flyway-cloud.properties
 **/application-cloud.yml
 
+### .attach_pid files ###
+.attach_pid*
