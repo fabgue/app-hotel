@@ -33,7 +33,7 @@ spring:
     
 # Logging
 logging:
-  file: logs/hotel.log
+  file: .logs/hotel.log
   level:
     fg.app: DEBUG
     # In development view sql

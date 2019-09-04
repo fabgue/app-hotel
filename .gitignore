@@ -199,3 +199,21 @@ nbdist/
 .nb-gradle/
 
 # End of https://www.gitignore.io/api/java,maven,eclipse,netbeans,intellij
+
+# Inicio ajustes
+
+### STS ###
+#HELP.md
+
+### wrapper ###
+.mvn/
+mvnw
+mvnw.cmd
+
+### logs ###
+.logs/
+
+### cloud ###
+**/flyway-cloud.properties
+**/application-cloud.yml
+

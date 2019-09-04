@@ -4,7 +4,7 @@
 
 	<!-- daily rollover -->
 	<appender name="ROLLIN" class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file>logs/aplicacion.log</file>
+		<file>.logs/aplicacion.log</file>
         <encoder>
             <pattern>${FILE_LOG_PATTERN}</pattern>
         </encoder>		
