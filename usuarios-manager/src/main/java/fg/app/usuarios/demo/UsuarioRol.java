@@ -1,7 +1,6 @@
-package fg.app.usuarios.entity;
+package fg.app.usuarios.demo;
 
-public class UsuarioRol { }
-/*import javax.persistence.Column;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,12 +14,12 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-@Entity
-@Table(name = "USUARIO_ROL")
+//@Entity
+//@Table(name = "USUARIO_ROL")
 public class UsuarioRol {
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	//@Id
+	//@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "ID", nullable = false)
 	private Long id;
 	
@@ -31,4 +30,3 @@ public class UsuarioRol {
 	private Long idRol;
 	
 }
-*/
