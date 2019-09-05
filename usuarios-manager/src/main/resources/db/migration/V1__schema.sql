@@ -12,10 +12,10 @@ create table rol (
 	id bigserial not null,
 	nombre varchar(100) not null
 );
--- alter table rol add constraint rol_pk primary key (id);
+alter table rol add constraint rol_pk primary key (id);
 
 create table usuario_rol (
-	id bigserial not null,
+	-- id bigserial not null,
 	id_usuario bigint not null,
 	id_rol bigint not null
 );
