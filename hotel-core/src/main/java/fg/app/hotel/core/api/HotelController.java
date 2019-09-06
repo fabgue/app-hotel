@@ -24,7 +24,7 @@ import fg.app.hotel.core.repository.HotelRepository;
 @RequestMapping("/hotel")
 public class HotelController {
 	
-	private Logger logger = LoggerFactory.getLogger(this.getClass());
+	private static Logger logger = LoggerFactory.getLogger(HotelController.class);
 	
 	@Autowired
 	private HotelRepository hotelRepository;

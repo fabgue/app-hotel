@@ -27,10 +27,11 @@ public class DbUserDetailsService implements UserDetailsService {
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String username) {
         Usuario usuario = usuarioRepository.findByLogin(username);
-        if (usuario == null) throw new UsernameNotFoundException(username);
-
+        if (usuario == null) { 
+        	throw new UsernameNotFoundException(username);
+        }
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
-        for (Rol rol : usuario.getRoles()){
+        for (Rol rol : usuario.getRoles()) {
             grantedAuthorities.add(new SimpleGrantedAuthority(rol.getNombre()));
         }
         return new User(usuario.getLogin(), usuario.getClave(), grantedAuthorities);
