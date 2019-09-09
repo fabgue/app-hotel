@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import fg.app.usuarios.dto.UsuarioDto;
+import fg.app.usuarios.dto.UsuarioValidator;
 import fg.app.usuarios.service.SecurityServiceImpl;
 import fg.app.usuarios.service.UsuarioService;
 
@@ -21,23 +23,26 @@ public class UsuarioController {
 
 	@Autowired
 	private SecurityServiceImpl securityService;
+	
+	@Autowired
+	private UsuarioValidator usuarioValidator;
 
-	@GetMapping("/registration")
+	@GetMapping("/registro")
 	public String registration(Model model) {
-		//model.addAttribute("userForm", new User());
-		return "registration";
+		model.addAttribute("usuarioForm", new UsuarioDto());
+		return "registro";
 	}
 
-	/*
-	@PostMapping("/registration")
-	public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult) {
-		//userValidator.validate(userForm, bindingResult);
+	
+	@PostMapping("/registro")
+	public String registration(@ModelAttribute("usuarioForm") UsuarioDto usuarioForm, BindingResult bindingResult) {
+		usuarioValidator.validate(usuarioForm, bindingResult);
 		if (bindingResult.hasErrors()) {
-			return "registration";
+			return "registro";
 		}
-		//userService.save(userForm);
-		securityService.autoLogin(userForm.getUsername(), userForm.getPasswordConfirm());
-		return "redirect:/welcome";
+		usuarioService.createUsuario(usuarioForm);
+		securityService.autoLogin(usuarioForm.getLogin(), usuarioForm.getClave());
+		return "redirect:/inicio";
 	}
 
 	@GetMapping("/login")
@@ -49,10 +54,10 @@ public class UsuarioController {
 		return "login";
 	}
 
-	@GetMapping({ "/", "/welcome" })
-	public String welcome(Model model) {
-		return "welcome";
+	@GetMapping({ "/", "/inicio" })
+	public String inicio(Model model) {
+		return "inicio";
 	}
-	*/
+	
 
 }
