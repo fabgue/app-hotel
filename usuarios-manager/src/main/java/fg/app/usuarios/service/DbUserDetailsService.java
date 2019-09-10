@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 
@@ -17,7 +18,7 @@ import fg.app.usuarios.entity.Rol;
 import fg.app.usuarios.entity.Usuario;
 import fg.app.usuarios.repository.UsuarioRepository;
 
-
+@Service
 public class DbUserDetailsService implements UserDetailsService {
 
     @Autowired
