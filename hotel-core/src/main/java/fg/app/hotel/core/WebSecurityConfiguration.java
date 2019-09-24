@@ -20,11 +20,12 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     }  
       
     @Override  
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {  
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+    	// Spring Security 5 requires specifying the password storage format
         auth
         	.inMemoryAuthentication()  
             .withUser("user")  
-            	.password("{noop}password") //  Spring Security 5 requires specifying the password storage format  
+            	.password("{noop}password")   
             	.roles("USER")  
             .and()
 	        .withUser("admin")  
