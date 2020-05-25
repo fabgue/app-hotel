@@ -22,6 +22,7 @@ public class UsuarioService {
 		return usuarioRepository.findByLogin(login);
 	}
 	
+	
 	public Usuario createUsuario(UsuarioDto dto) {		
 		Usuario usuario = new Usuario();
 		usuario.setClave(bCryptPasswordEncoder.encode(dto.getClave()));

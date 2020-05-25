@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>fg.app</groupId>
-	<artifactId>usuarios-manager</artifactId>
+	<artifactId>hotel-usuarios</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>usuarios-manager</name>
 	<description>User Management</description>
