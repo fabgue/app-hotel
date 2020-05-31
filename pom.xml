@@ -9,7 +9,7 @@
 	
 	<modules>
 		<module>hotel-core</module>
-		<module>usuarios-manager</module>
+		<module>hotel-usuarios</module>
 	</modules>
 	
 </project>
