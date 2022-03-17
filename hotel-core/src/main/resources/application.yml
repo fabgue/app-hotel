@@ -1,31 +1,96 @@
 # Web
 server:
-  port: 8080
+  port: 9090
   servlet:
     contextPath: "/api"
 
 # Spring
 spring:  
+  datasource:  
+    url: "jdbc:postgresql://localhost:5432/aphdb"  
+    username: aphuser  
+    password: aphpass
   jpa:  
     hibernate:  
-      ddl-auto: create
+      ddl-auto: validate
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     properties: 
       hibernate:
         # Fix java.sql.SQLFeatureNotSupportedException: Method org.postgresql.jdbc.PgConnection.createClob() is not yet implemented  
         jdbc.lob.non_contextual_creation: true
+  data:
+    # default is application/hal+json
+    rest.defaultMediaType: application/json
+  flyway:
+    locations: filesystem:db/migration
+    enabled: false
+  jackson:     
+    serialization: 
+      FAIL_ON_EMPTY_BEANS: false
+      WRITE_NULL_MAP_VALUES: false   
+    deserialization:
+      FAIL_ON_UNKNOWN_PROPERTIES: false
+    
+# Logging
+logging:
+  file: .logs/hotel.log
+  level:
+    fg.app: DEBUG
+    # In development view sql
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql: TRACE
+    
+# Actuator
+management:
+  endpoints.web.exposure.include: "*"
+  endpoint.health.show-details: always
+  #endpoints.web.exposure.include: ['beans','conditions','metrics']
+  
+# custom actuator/info  
+info:
+  app.name: HotelApp
+  app.java.version: ${java.version}
+  
+# custom properties
+app:
+  swagger.contact-name: fguerrero
+    
+# -- Required for multiple profiles in file 
+---
+spring:
+  profiles: sqlgen
+  datasource:
+    url: jdbc:postgresql://localhost:5432/aphdb
+    username: aphuser  
+    password: aphpass
+  jpa:
+    properties:
+      javax: 
+        persistence:
+          schema-generation:
+            create-source: metadata
+            scripts:
+              action: create
+              create-target: db/ddl_jpa_creation.sql
+  flyway:
+    enabled: false
+
+---
+spring:  
+  profiles: dbgen
   datasource:  
     url: "jdbc:postgresql://localhost:5432/aphdb"  
     username: aphuser  
     password: aphpass
+  jpa:  
+    hibernate:  
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    properties: 
+      hibernate:
+        jdbc.lob.non_contextual_creation: true
   data:
-    rest.defaultMediaType: application/json    
-    # default is application/hal+json
-    
-
-# lOGGING
-logging:
-  level:
-    org.hibernate.SQL: INFO
-    org.hibernate.type.descriptor.sql.BasicBinder: INFO
+    rest.defaultMediaType: application/json
+  flyway:
+    enabled: false
     

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<include resource="org/springframework/boot/logging/logback/base.xml" />
+
+	<!-- daily rollover -->
+	<appender name="ROLLIN" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>.logs/aplicacion.log</file>
+        <encoder>
+            <pattern>${FILE_LOG_PATTERN}</pattern>
+        </encoder>		
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">			
+			<fileNamePattern>${LOG_FILE}.%d{yyyy-MM-dd}</fileNamePattern>
+		</rollingPolicy>
+	</appender>
+	
+	<root level="INFO">
+		<appender-ref ref="ROLLIN" />
+	</root>
+
+	<logger name="fg.app.hotel.core" level="INFO" additivity="false">
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="FILE" />
+	</logger>
+	<logger name="fg.app.hotel.core.exception" level="DEBUG" additivity="false">
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="FILE" />
+	</logger>
+
+</configuration>

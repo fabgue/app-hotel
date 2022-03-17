@@ -34,3 +34,12 @@ build/
 ### wrapper ###
 .mvn/
 mvnw
+
+### logs ###
+logs/
+
+
+### cloud ###
+
+**/flyway-cloud.properties
+**/application-cloud.yml

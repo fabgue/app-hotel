@@ -24,16 +24,14 @@ public class HotelCoreApplication {
 	@Bean
 	ApplicationRunner init(HotelRepository hotelRepo, HabitacionRepository habitacionRepo) {
 		return args -> {
-			logger.info("Inicio HotelCoreApplication");
-			hotelRepo.save(
-				new Hotel(null, "Hotel Ritz","direccion1", "telefono1", "Hotel1", "localidad1", "5 estrellas"));
-			hotelRepo.save(
-				new Hotel(null, "Hotel Hilton","direccion2", "telefono2", "Hotel2", "localidad2", "5 estrellas"));
-			hotelRepo.save(
-				new Hotel(null, "Hotel Watford","direccion3", "telefono3", "Hotel3", "localidad3", "5 estrellas"));	
+			logger.info("Inicio HotelCoreApplication runner");
+			/*Hotel uno = hotelRepo.save(new Hotel(null, null, null , "Hotel Ritz", null, null, null));
+			Hotel dos = hotelRepo.save(new Hotel(null, null, null , "Hotel Hilton", null, null, null));
 			
-			habitacionRepo.save(new Habitacion(null, 1L, "101", 1, "Doble", 2));
-			habitacionRepo.save(new Habitacion(null, 1L, "201", 2, "Doble", 2));
+			habitacionRepo.save(new Habitacion(null, uno.getId(), null, "101", 1, null));
+			habitacionRepo.save(new Habitacion(null, uno.getId(), null, "201", 2, null));
+			habitacionRepo.save(new Habitacion(null, dos.getId(), null, "1001", 1, null));
+			habitacionRepo.save(new Habitacion(null, dos.getId(), null, "2001", 2, null));*/
 		};
 	}
 }
