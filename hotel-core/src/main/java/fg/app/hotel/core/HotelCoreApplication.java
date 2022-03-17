@@ -24,7 +24,7 @@ public class HotelCoreApplication {
 	@Bean
 	ApplicationRunner init(HotelRepository hotelRepo, HabitacionRepository habitacionRepo) {
 		return args -> {
-			logger.info("Inicio HotelCoreApplication");
+			logger.info("Inicio HotelCoreApplication runner");
 			/*Hotel uno = hotelRepo.save(new Hotel(null, null, null , "Hotel Ritz", null, null, null));
 			Hotel dos = hotelRepo.save(new Hotel(null, null, null , "Hotel Hilton", null, null, null));
 			
