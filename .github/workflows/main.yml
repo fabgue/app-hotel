@@ -19,9 +19,31 @@ jobs:
         distribution: 'temurin'
         java-version: '17'
 
+    - name: Get Previous tag
+      id: previous_tag
+      uses: WyriHaximus/github-action-get-previous-tag@v1
+      with:
+        fallback: 0.0.1
+
+    - name: Bump release version
+      id: bump_version
+      uses: christian-draeger/increment-semantic-version@1.0.2
+      with:
+        current-version: ${{ steps.previous_tag.outputs.tag }}
+        version-fragment: bug
+
+    - name: Show version
+      run: echo ${{ steps.bump_version.outputs.next-version }}
+
+    - name: Tag
+      uses: rickstaa/action-create-tag@v1
+      with:
+        tag: ${{ steps.bump_version.outputs.next-version }}
+
     - name: Check Version
       run: |
         java -version
         mvn -version
         aws --version
         kubectl version --client
+        git tag -l
