@@ -7,16 +7,21 @@ on:
 
 jobs:
   deploy:
-    name: Check
+    name: Tools
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
 
-    - name: Check tools
+    - name: Configure Java
+      uses: actions/setup-java@v2
+      with:
+        distribution: 'temurin'
+        java-version: '17'
+
+    - name: Check Version
       run: |
         java -version
         mvn -version
         aws --version
         kubectl version --client
-        eksctl version
