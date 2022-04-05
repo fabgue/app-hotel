@@ -3,7 +3,7 @@ name: Proof
 on:
   push:
     branches: 
-      - dev
+      - develop
 
 jobs:
   deploy:
