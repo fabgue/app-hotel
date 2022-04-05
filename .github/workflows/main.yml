@@ -1,0 +1,22 @@
+name: Proof
+
+on:
+  push:
+    branches: 
+      - dev
+
+jobs:
+  deploy:
+    name: Check
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Check tools
+      run: |
+        java -version
+        mvn -version
+        aws --version
+        kubectl version --client
+        eksctl version
